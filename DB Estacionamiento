@@ -1,0 +1,53 @@
+/*Creacion de la base de datos en MySQL utilizada en este proyecto*/
+create database estacionamiento;
+
+/*Creacion de tabla*/
+CREATE TABLE vehiculos (
+  ID int(11) NOT NULL AUTO_INCREMENT,
+  Placa varchar(20) NOT NULL,
+  Propietario varchar(100) NOT NULL,
+  TipoVehiculo varchar(50) NOT NULL,
+  HoraEntrada date NOT NULL,
+  HoraSalida date DEFAULT NULL,
+  ValorPagado float DEFAULT NULL,
+  Estado varchar(30) NOT null,
+  /* Constraints */
+  CONSTRAINT vehiculos_pkey PRIMARY KEY (ID)
+);
+
+
+
+/*==================================================================*/
+/*Ejemplo de creacion de la misma base de datos utilizando el motor PostgreSQL y esquemas*/
+
+/*Creacion de la base de datos*/
+create database estacionamiento;
+
+/*Creacion de esquema*/
+create schema if not exists parking;
+set search_path to parking;
+
+/*Creacion de tabla*/
+CREATE TABLE vehiculos (
+  ID serial,
+  Placa varchar(20) NOT NULL,
+  Propietario varchar(100) NOT NULL,
+  TipoVehiculo varchar(50) NOT NULL,
+  HoraEntrada date NOT NULL,
+  HoraSalida date DEFAULT NULL,
+  ValorPagado float DEFAULT NULL,
+  Estado varchar(30) NOT null,
+  /* Constraints */
+  CONSTRAINT vehiculos_pkey PRIMARY KEY (ID)
+);
+
+/*Documentacion de las columnas*/
+COMMENT ON COLUMN vehiculos.ID IS 'Id de registro de vehiculo, llave primaria';
+COMMENT ON COLUMN vehiculos.Placa IS 'Placa de registro ingresado';
+COMMENT ON COLUMN vehiculos.Propietario IS 'Nombre del propietario';
+COMMENT ON COLUMN vehiculos.TipoVehiculo IS 'Tipo de auto registrado';
+COMMENT ON COLUMN vehiculos.HoraEntrada IS 'Registro de hora de entrada';
+COMMENT ON COLUMN vehiculos.HoraSalida IS 'Registro de hora de salida';
+COMMENT ON COLUMN vehiculos.ValorPagado IS 'Pago por uso de estacionamiento';
+COMMENT ON COLUMN vehiculos.Estado IS 'Vehiculo dentro o fuera del estacionamiento';
+
